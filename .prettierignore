@@ -1,0 +1,25 @@
+# Carpetas de build
+dist/
+build/
+coverage/
+
+# Node modules
+node_modules/
+
+# Archivos de entorno
+.env
+.env.*
+
+# Configuración del Angular CLI (opcional ignorar)
+angular.json
+
+# Archivo de lock
+package-lock.json
+
+# Archivos generados
+*.log
+*.tmp
+
+# Archivos de configuración (opcional si no querés que Prettier los toque)
+*.config.ts
+.prettierrc
