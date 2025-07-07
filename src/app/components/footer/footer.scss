@@ -1,0 +1,12 @@
+@use "./../../styles/index" as index;
+
+.footer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: index.$primary-color;
+  box-sizing: border-box;
+  color: index.$text-color-white;
+}

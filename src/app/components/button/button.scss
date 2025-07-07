@@ -1,0 +1,76 @@
+@use "./../../styles/index" as index;
+
+button {
+  padding: 0.8rem 1.4rem;
+  border: 1.5px solid;
+  border-radius: 8px;
+  font-weight: 600;
+  color: index.$text-color-white;
+  box-shadow:
+    0px 11px 20px -20px black,
+    0px -5px 1px -1px #0000000a inset;
+  transition: all 0.2s;
+  font-family: montserrat;
+  cursor: pointer;
+
+  &.max-width {
+    width: 100%;
+  }
+
+  &:disabled {
+    opacity: 0.2;
+    box-shadow: none;
+    border-color: index.$primary-button;
+  }
+
+  &.primary {
+    border-color: index.$primary-button-contrast-color;
+    background-color: index.$primary-button;
+
+    &:active {
+      background-color: index.$hover-color;
+      box-shadow:
+        0px 1px 2px 0px #28282826 inset,
+        0px 4px 4px 0px #28282821 inset,
+        0px 9px 6px 0px #28282814 inset,
+        0px 17px 7px 0px #28282805 inset,
+        0px 26px 7px 0px #28282800 inset;
+    }
+  }
+
+  &.secondary {
+    border-color: index.$primary-contrast-color;
+    color: index.$primary-text-color;
+    &:active {
+      background-color: index.$primary-contrast-color;
+      box-shadow:
+        0px 1px 2px 0px #28282826 inset,
+        0px 4px 4px 0px #28282821 inset,
+        0px 9px 6px 0px #28282814 inset,
+        0px 17px 7px 0px #28282805 inset,
+        0px 26px 7px 0px #28282800 inset;
+    }
+  }
+
+  &.cancel {
+    background-color: index.$text-error-color;
+    border-color: #b9454b;
+    color: index.$white;
+
+    &:active {
+      background-color: #9b353d;
+      box-shadow:
+        0px 1px 2px 0px #28282826 inset,
+        0px 4px 4px 0px #28282821 inset,
+        0px 9px 6px 0px #28282814 inset,
+        0px 17px 7px 0px #28282805 inset,
+        0px 26px 7px 0px #28282800 inset;
+    }
+  }
+
+  &.basic {
+    box-shadow: unset;
+    border: unset;
+    color: index.$primary-text-color;
+  }
+}

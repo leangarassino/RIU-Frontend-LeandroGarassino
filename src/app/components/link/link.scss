@@ -1,0 +1,25 @@
+@use "./../../styles/index" as index;
+
+.link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color: index.$text-color-white;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s ease;
+  font-family: montserrat;
+
+  &.primary {
+    background-color: index.$primary-button;
+    &:hover {
+      background-color: index.$hover-color;
+    }
+  }
+
+  &.basic {
+    &:hover {
+      background-color: index.$primary-contrast-color;
+    }
+  }
+}

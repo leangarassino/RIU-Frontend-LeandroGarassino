@@ -1,0 +1,13 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{ label }}</mat-label>
+  <mat-select
+    [formControl]="control"
+    panelClass="custom-select-panel"
+    (selectionChange)="changeValue.emit($event.value)"
+  >
+    <mat-option *ngFor="let option of options" [value]="option.value">
+      {{ option.label }}
+    </mat-option>
+  </mat-select>
+  <!-- TODO: Agregar manejo de errores -->
+</mat-form-field>

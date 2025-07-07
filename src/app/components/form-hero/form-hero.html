@@ -1,0 +1,80 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+  <form [formGroup]="heroForm">
+    <app-input label="Nombre" [control]="heroForm.controls['name']"></app-input>
+    <app-input
+      label="Descripción"
+      [control]="heroForm.controls['history']"
+    ></app-input>
+    <app-select
+      label="Categoría"
+      [options]="categories"
+      [control]="heroForm.controls['category']"
+    ></app-select>
+    <app-select
+      label="Género"
+      [options]="genders"
+      [control]="heroForm.controls['gender']"
+    ></app-select>
+
+    <fieldset>
+      <legend>Poderes</legend>
+      @for (power of availablePowers; track power; let i = $index) {
+        <div>
+          <label>
+            <input type="checkbox" [formControl]="getPowersControl(i)" />
+            {{ power }}
+          </label>
+        </div>
+      }
+    </fieldset>
+
+    <fieldset [formGroupName]="'stats'">
+      <legend>Estadísticas</legend>
+      <app-input
+        label="Fuerza"
+        type="number"
+        [control]="getControl('stats.strength')"
+      ></app-input>
+      <app-input
+        label="Inteligencia"
+        type="number"
+        [control]="getControl('stats.intelligence')"
+      ></app-input>
+      <app-input
+        label="Velocidad"
+        type="number"
+        [control]="getControl('stats.speed')"
+      ></app-input>
+      <app-input
+        label="Durabilidad"
+        type="number"
+        [control]="getControl('stats.durability')"
+      ></app-input>
+      <app-input
+        label="Proyección de energía"
+        type="number"
+        [control]="getControl('stats.energyProjection')"
+      ></app-input>
+      <app-input
+        label="Habilidad de combate"
+        type="number"
+        [control]="getControl('stats.combatSkill')"
+      ></app-input>
+    </fieldset>
+    <!-- TODO: Crear componente de imagen -->
+    <p>Subir imagen</p>
+    <input type="file" (change)="onImageSelected($event)" />
+    <!-- TODO: Crear componente de checkbox -->
+    <label>
+      <input type="checkbox" formControlName="isActive" />
+      ¿Está retirado?
+    </label>
+
+    <app-button
+      text="Crear héroe"
+      typeButton="primary"
+      (confirm)="saveHeroe()"
+    ></app-button>
+  </form>
+</div>

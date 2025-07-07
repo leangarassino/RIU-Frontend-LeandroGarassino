@@ -1,0 +1,10 @@
+<mat-form-field
+  class="control"
+  appFormField
+  appearance="outline"
+  *ngIf="control"
+>
+  <mat-label>{{ label }}</mat-label>
+  <input matInput [type]="type" [formControl]="control" />
+  <!-- TODO: Agregar manejo de errores -->
+</mat-form-field>

@@ -1,0 +1,57 @@
+@use "./../../styles/index" as index;
+
+mat-form-field {
+  width: 100%;
+
+  ::ng-deep.mdc-text-field--focused:not(
+      .mdc-text-field--disabled
+    ).mdc-text-field--focused
+    .mdc-floating-label {
+    color: index.$primary-contrast-color;
+  }
+
+  ::ng-deep.mdc-text-field--outlined:not(
+      .mdc-text-field--disabled
+    ).mdc-text-field--focused
+    .mdc-notched-outline__leading,
+  ::ng-deep.mdc-text-field--outlined:not(
+      .mdc-text-field--disabled
+    ).mdc-text-field--focused
+    .mdc-notched-outline__notch,
+  ::ng-deep.mdc-text-field--outlined:not(
+      .mdc-text-field--disabled
+    ).mdc-text-field--focused
+    .mdc-notched-outline__trailing {
+    border-color: var(--mdc-theme-primary, index.$primary-contrast-color);
+  }
+
+  ::ng-deep
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__leading {
+    border-color: index.$border-soft-color;
+  }
+
+  ::ng-deep.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__notch {
+    border-color: index.$border-soft-color;
+  }
+
+  ::ng-deep.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__trailing {
+    border-color: index.$border-soft-color;
+  }
+
+  ::ng-deep
+    .mdc-text-field--outlined
+    .mdc-notched-outline
+    .mdc-notched-outline__leading {
+    border-radius: 12px 0 0 12px !important;
+  }
+
+  ::ng-deep
+    .mdc-text-field--outlined
+    .mdc-notched-outline
+    .mdc-notched-outline__trailing {
+    border-radius: 0 12px 12px 0 !important;
+  }
+}
