@@ -1,3 +1,7 @@
 <div class="container">
-  <app-form-hero title="Crea tu héroe"></app-form-hero>
+  <app-form-hero
+    title="Crea tu héroe"
+    textButton="Crear héroe"
+    (emitHeroe)="addHero($event)"
+  ></app-form-hero>
 </div>

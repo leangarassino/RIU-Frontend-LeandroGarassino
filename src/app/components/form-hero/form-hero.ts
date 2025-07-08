@@ -1,5 +1,5 @@
 import { AVAILABLE_POWERS, CATEGORIES, GENDERS } from './../../utils/data';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InputComponent } from '../input/input';
 import {
   FormArray,
@@ -11,44 +11,67 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from '../button/button';
 import { Select } from '../select/select';
+import { Image } from '../image/image';
+import { IHero } from '../../models/Hero.model';
 
 @Component({
   selector: 'app-form-hero',
-  imports: [InputComponent, ReactiveFormsModule, Button, Select],
+  imports: [InputComponent, ReactiveFormsModule, Button, Select, Image],
   templateUrl: './form-hero.html',
   styleUrl: './form-hero.scss',
 })
 export class FormHero {
   @Input() title: string = '';
+  @Input() textButton: string = '';
+  @Input() set hero(hero: IHero | null) {
+    if (hero) {
+      this.editHero = hero;
+      this.patchFormWithHero(hero);
+    }
+  }
+  @Output() emitHeroe: EventEmitter<IHero> = new EventEmitter();
   categories = CATEGORIES;
   availablePowers = AVAILABLE_POWERS;
   genders = GENDERS;
+  loading = false;
+  editHero: IHero | null = null;
   heroForm = new FormGroup({
-    id: new FormControl(uuidv4()),
     name: new FormControl('', [Validators.required]),
     history: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
-    image: new FormControl(''),
-    isActive: new FormControl(true),
+    image: new FormControl('', [Validators.required]),
+    isRetired: new FormControl(false),
     powers: new FormArray(AVAILABLE_POWERS.map(() => new FormControl(false))),
     stats: new FormGroup({
-      strength: new FormControl(null, [Validators.min(0), Validators.max(100)]),
-      intelligence: new FormControl(null, [
-        Validators.min(0),
+      strength: new FormControl(0, [
+        Validators.required,
+        Validators.min(1),
         Validators.max(100),
       ]),
-      speed: new FormControl(null, [Validators.min(0), Validators.max(100)]),
-      durability: new FormControl(null, [
-        Validators.min(0),
+      intelligence: new FormControl(0, [
+        Validators.required,
+        Validators.min(1),
         Validators.max(100),
       ]),
-      energyProjection: new FormControl(null, [
-        Validators.min(0),
+      speed: new FormControl(0, [
+        Validators.required,
+        Validators.min(1),
         Validators.max(100),
       ]),
-      combatSkill: new FormControl(null, [
-        Validators.min(0),
+      durability: new FormControl(0, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(100),
+      ]),
+      energyProjection: new FormControl(0, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(100),
+      ]),
+      combatSkill: new FormControl(0, [
+        Validators.required,
+        Validators.min(1),
         Validators.max(100),
       ]),
     }),
@@ -66,11 +89,58 @@ export class FormHero {
     return this.heroForm.get(path) as FormControl;
   }
 
-  saveHeroe() {
-    console.log(this.heroForm.value);
+  sendHeroe() {
+    if (this.heroForm.invalid) {
+      this.heroForm.markAllAsTouched();
+      return;
+    }
+    this.loading = true;
+    const formValue = this.heroForm.value;
+    const statsGroup = this.heroForm.get('stats') as FormGroup;
+    const hero: IHero = {
+      id: this.editHero?.id ?? uuidv4(),
+      name: formValue.name ?? '',
+      history: formValue.history ?? '',
+      category: formValue.category ?? '',
+      gender: formValue.gender ?? '',
+      image: formValue.image ?? '',
+      isRetired: formValue.isRetired ?? false,
+      powers: this.powersArray.value ?? [],
+      stats: {
+        strength: statsGroup.get('strength')?.value ?? 0,
+        intelligence: statsGroup.get('intelligence')?.value ?? 0,
+        speed: statsGroup.get('speed')?.value ?? 0,
+        durability: statsGroup.get('durability')?.value ?? 0,
+        energyProjection: statsGroup.get('energyProjection')?.value ?? 0,
+        combatSkill: statsGroup.get('combatSkill')?.value ?? 0,
+      },
+    };
+    this.emitHeroe.emit(hero);
+    this.heroForm.reset();
+    this.loading = false;
   }
 
-  onImageSelected(event: Event) {
-    console.log('event', event);
+  onImageSelected(event: string) {
+    this.heroForm.patchValue({ image: event });
+  }
+
+  private patchFormWithHero(hero: IHero): void {
+    this.heroForm.patchValue({
+      name: hero.name,
+      history: hero.history,
+      category: hero.category,
+      gender: hero.gender,
+      isRetired: hero.isRetired,
+      powers: hero.powers,
+      stats: {
+        strength: hero.stats.strength,
+        intelligence: Number(hero.stats.intelligence),
+        speed: Number(hero.stats.speed),
+        durability: Number(hero.stats.durability),
+        energyProjection: Number(hero.stats.energyProjection),
+        combatSkill: Number(hero.stats.combatSkill),
+      },
+      image: hero.image,
+    });
   }
 }

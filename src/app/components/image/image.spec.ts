@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Container } from './container';
+import { Image } from './image';
 
-describe('Container', () => {
-  let component: Container;
-  let fixture: ComponentFixture<Container>;
+describe('Image', () => {
+  let component: Image;
+  let fixture: ComponentFixture<Image>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Container]
+      imports: [Image]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Container);
+    fixture = TestBed.createComponent(Image);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

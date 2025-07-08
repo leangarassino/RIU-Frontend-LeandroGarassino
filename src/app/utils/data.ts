@@ -43,3 +43,12 @@ export const GENDERS = [
   { value: Gender.NonBinary, label: 'No binario' },
   { value: Gender.Other, label: 'Otro' },
 ];
+
+export const TRANSLATIONS: { [key: string]: string } = {
+  name: 'Nombre',
+  category: 'Categoría',
+  gender: 'Género',
+  isRetired: 'Retirado',
+  true: 'Sí',
+  false: 'No',
+};

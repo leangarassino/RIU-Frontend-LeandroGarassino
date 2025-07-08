@@ -1,4 +1,10 @@
 <div class="container">
   <app-link text="Crear héroe" path="/heroes/create"></app-link>
-  <app-table [data]="dataSource" [displayedColumns]="colums"></app-table>
+  <app-table
+    [data]="heroesForTable()"
+    [displayedColumns]="colums()"
+    (edit)="navigateEdit($event)"
+    (delete)="onDelete($event)"
+    (showHero)="navigateHero($event)"
+  ></app-table>
 </div>

@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  app-form-hero {
+    width: 100%;
+    max-width: 700px;
+  }
+}

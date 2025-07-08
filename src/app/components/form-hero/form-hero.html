@@ -3,7 +3,7 @@
   <form [formGroup]="heroForm">
     <app-input label="Nombre" [control]="heroForm.controls['name']"></app-input>
     <app-input
-      label="Descripción"
+      label="Historia"
       [control]="heroForm.controls['history']"
     ></app-input>
     <app-select
@@ -17,7 +17,7 @@
       [control]="heroForm.controls['gender']"
     ></app-select>
 
-    <fieldset>
+    <fieldset class="powers">
       <legend>Poderes</legend>
       @for (power of availablePowers; track power; let i = $index) {
         <div>
@@ -62,19 +62,18 @@
         [control]="getControl('stats.combatSkill')"
       ></app-input>
     </fieldset>
-    <!-- TODO: Crear componente de imagen -->
-    <p>Subir imagen</p>
-    <input type="file" (change)="onImageSelected($event)" />
-    <!-- TODO: Crear componente de checkbox -->
     <label>
-      <input type="checkbox" formControlName="isActive" />
+      <input type="checkbox" formControlName="isRetired" />
       ¿Está retirado?
     </label>
-
+    <app-image
+      (emitImage)="onImageSelected($event)"
+      [base64String]="editHero?.image"
+    ></app-image>
     <app-button
-      text="Crear héroe"
+      [text]="textButton"
       typeButton="primary"
-      (confirm)="saveHeroe()"
+      (confirm)="sendHeroe()"
     ></app-button>
   </form>
 </div>

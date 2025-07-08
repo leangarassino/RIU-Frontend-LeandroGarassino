@@ -1,6 +1,7 @@
 <button
   [class]="typeButton"
   [class.max-width]="maxWidth"
+  [disabled]="disabled"
   (click)="confirm.emit()"
 >
   {{ text }}

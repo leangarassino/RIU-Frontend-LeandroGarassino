@@ -3,11 +3,16 @@
     @for (column of displayedColumns; track column) {
       <ng-container [matColumnDef]="column">
         <th mat-header-cell *matHeaderCellDef>
-          {{ column === "actions" ? "" : (column | titlecase) }}
+          {{ column === "actions" ? "Acciones" : (column | translate) }}
         </th>
         <td mat-cell *matCellDef="let element">
           <ng-container *ngIf="column === 'actions'; else defaultCell">
             <div class="actions">
+              <app-button
+                text="Ver"
+                typeButton="primary"
+                (confirm)="show(element)"
+              ></app-button>
               <app-button
                 text="Editar"
                 typeButton="secondary"
@@ -21,7 +26,7 @@
             </div>
           </ng-container>
           <ng-template #defaultCell>
-            {{ element[column] }}
+            {{ element[column] | translate }}
           </ng-template>
         </td>
       </ng-container>
@@ -31,12 +36,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
     <tr class="mat-row" *matNoDataRow>
-      <td
-        class="mat-cell text-empty"
-        [attr.colspan]="displayedColumns && displayedColumns.length"
-      >
-        No hay información disponible
-      </td>
+      <div class="empty">No hay información disponible.</div>
     </tr>
   </table>
   <mat-paginator

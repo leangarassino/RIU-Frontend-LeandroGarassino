@@ -1,0 +1,13 @@
+<div>
+  <p>Subir imagen</p>
+  <input type="file" (change)="onImageSelected($event)" />
+  @if (base64String) {
+    <div>
+      <img
+        [src]="base64String"
+        alt="Previsualización de la imagen del héroe"
+        class="preview"
+      />
+    </div>
+  }
+</div>

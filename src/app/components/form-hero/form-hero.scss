@@ -8,4 +8,16 @@
   h1 {
     text-align: center;
   }
+
+  .powers {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    @media (max-width: 767px) {
+      grid-template-columns: 100%;
+    }
+  }
+
+  fieldset {
+    border-radius: 12px;
+  }
 }

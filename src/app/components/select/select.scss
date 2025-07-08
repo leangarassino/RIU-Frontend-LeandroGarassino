@@ -3,6 +3,19 @@
 mat-form-field {
   width: 100%;
 
+  // color
+  ::ng-deep .mat-mdc-select-value {
+    color: index.$text-color-strong !important; // Añade !important si es necesario
+  }
+
+  ::ng-deep .mdc-floating-label {
+    color: index.$text-color-soft;
+  }
+
+  ::ng-deep.mdc-text-field--invalid .mdc-floating-label {
+    color: index.$text-error-color !important; // Tu color de error (ej. rojo)
+  }
+
   ::ng-deep
     .mdc-text-field--outlined
     .mdc-notched-outline
@@ -53,5 +66,9 @@ mat-form-field {
   ::ng-deep.mdc-text-field--outlined:not(.mdc-text-field--disabled)
     .mdc-notched-outline__trailing {
     border-color: index.$border-soft-color;
+  }
+
+  ::ng-deep .mat-select-value {
+    color: index.$text-color-strong;
   }
 }

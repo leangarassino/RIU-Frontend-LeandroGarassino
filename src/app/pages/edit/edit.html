@@ -1,1 +1,8 @@
-<p>edit works!</p>
+<div class="container">
+  <app-form-hero
+    title="Edita tu héroe"
+    textButton="Editar héroe"
+    (emitHeroe)="editHero($event)"
+    [hero]="hero"
+  ></app-form-hero>
+</div>

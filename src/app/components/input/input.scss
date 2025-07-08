@@ -10,6 +10,24 @@ mat-form-field {
     color: index.$primary-contrast-color;
   }
 
+  // color
+  ::ng-deep .mdc-text-field__input {
+    color: index.$text-color-strong !important;
+  }
+
+  // --- Color del label en estado NORMAL (no enfocado, sin error) ---
+  // Este es el color base para el label.
+  // Es importante que NO uses !important aquí si quieres que otros estilos lo sobrescriban.
+  ::ng-deep .mdc-floating-label {
+    color: index.$text-color-soft;
+  }
+
+  // --- Color del label cuando el campo tiene un ERROR (sin importar el foco) ---
+  // Esta regla sobrescribe la anterior cuando el campo es inválido.
+  ::ng-deep.mdc-text-field--invalid .mdc-floating-label {
+    color: index.$text-error-color !important; // Tu color de error (ej. rojo)
+  }
+
   ::ng-deep.mdc-text-field--outlined:not(
       .mdc-text-field--disabled
     ).mdc-text-field--focused
@@ -53,5 +71,9 @@ mat-form-field {
     .mdc-notched-outline
     .mdc-notched-outline__trailing {
     border-radius: 0 12px 12px 0 !important;
+  }
+
+  ::ng-deep .mat-select-value {
+    color: index.$text-color-strong !important;
   }
 }
