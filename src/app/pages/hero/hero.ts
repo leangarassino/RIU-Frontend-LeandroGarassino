@@ -31,6 +31,8 @@ export class Hero implements OnInit {
         activeNames.push(AVAILABLE_POWERS[index]);
       }
     });
-    return activeNames.length > 0 ? activeNames.join(', ') : null;
+    return activeNames.length > 0
+      ? activeNames.join(', ')
+      : 'No tiene poderes.';
   }
 }
