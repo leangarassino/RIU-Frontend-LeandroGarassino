@@ -13,7 +13,7 @@ export const AVAILABLE_POWERS = [
 ];
 
 export enum Category {
-  Cosmic = 'Cósmico',
+  Cosmic = 'Galáctico',
   Mutant = 'Mutante',
   Tech = 'Tecnológico',
   Magic = 'Mágico',

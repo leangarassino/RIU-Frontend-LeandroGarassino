@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SelectFocusDirective } from '../../directives/select-focus';
 import { UppercaseInputDirective } from '../../directives/uppercase-input-directive';
+import { ErrorHelperService } from '../../services/error-helper.service';
 
 @Component({
   selector: 'app-input',
@@ -25,4 +26,5 @@ export class InputComponent {
   @Input() control!: FormControl;
   @Input() type: string = 'text';
   @Input() toUppercase: boolean = false;
+  errorHelper = inject(ErrorHelperService);
 }

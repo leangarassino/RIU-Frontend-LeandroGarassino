@@ -42,11 +42,12 @@ export class HeroesState {
     this.saveToLSHeroes();
   }
 
-  deleteHero(id: string): void {
+  deleteHero(id: string): IHero[] {
     this._heroes.update((currentHeroes) => {
       return currentHeroes.filter((hero) => hero.id !== id);
     });
     this.saveToLSHeroes();
+    return this.heroes();
   }
 
   editHero(editHero: IHero) {

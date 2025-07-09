@@ -5,6 +5,7 @@ import { Create } from './pages/create/create';
 import { Hero } from './pages/hero/hero';
 import { HeroesLayout } from './pages/heroes-layout/heroes-layout';
 import { Edit } from './pages/edit/edit';
+import { checkHeroeGuard } from './guards/check-heroe-guard';
 
 export const routes: Routes = [
   {
@@ -18,10 +19,12 @@ export const routes: Routes = [
       {
         path: 'hero/:id',
         component: Hero,
+        canActivate: [checkHeroeGuard],
       },
       {
         path: 'edit/:id',
         component: Edit,
+        canActivate: [checkHeroeGuard],
       },
       {
         path: 'create',

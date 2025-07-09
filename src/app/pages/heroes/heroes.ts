@@ -78,7 +78,8 @@ export class Heroes {
       .subscribe((confirm) => {
         if (confirm) {
           const id = event['id'] as string;
-          this.heroesService.deleteHero(id);
+          const heroes = this.heroesService.deleteHero(id);
+          this.dataHeroes.set(heroes);
         }
       });
   }

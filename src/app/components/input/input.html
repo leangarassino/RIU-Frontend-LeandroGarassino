@@ -16,4 +16,7 @@
   } @else {
     <input matInput [type]="type" [formControl]="control" appSelectFocus />
   }
+  <mat-error *ngIf="errorHelper.formControlHasError(control)">
+    {{ errorHelper.getErrorMessage(control) }}
+  </mat-error>
 </mat-form-field>

@@ -16,8 +16,9 @@ export class HeroesService {
     this.heroesState.addHero(newHero);
   }
 
-  deleteHero(id: string): void {
-    this.heroesState.deleteHero(id);
+  deleteHero(id: string): IHero[] {
+    const heroes = this.heroesState.deleteHero(id);
+    return heroes;
   }
 
   editHero(hero: IHero): void {

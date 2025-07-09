@@ -36,8 +36,16 @@ export class FormHero {
   loading = false;
   editHero: IHero | null = null;
   heroForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    history: new FormControl('', [Validators.required]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(20),
+    ]),
+    history: new FormControl('', [
+      Validators.required,
+      Validators.minLength(20),
+      Validators.maxLength(200),
+    ]),
     category: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
     image: new FormControl('', [Validators.required]),

@@ -20,8 +20,7 @@ export class Hero implements OnInit {
   ngOnInit(): void {
     if (this.id) {
       const hero = this.heroesService.getHero(this.id) ?? null;
-      if (!hero) this.router.navigate(['welcome']);
-      this.heroData.set(hero);
+      if (hero) this.heroData.set(hero);
     }
   }
 
