@@ -29,7 +29,7 @@ export enum Gender {
 }
 
 export const CATEGORIES = [
-  { value: Category.Cosmic, label: 'Cósmico' },
+  { value: Category.Cosmic, label: 'Galáctico' },
   { value: Category.Mutant, label: 'Mutante' },
   { value: Category.Tech, label: 'Tecnológico' },
   { value: Category.Magic, label: 'Mágico' },
