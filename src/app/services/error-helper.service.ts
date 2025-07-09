@@ -28,12 +28,6 @@ export class ErrorHelperService {
     if (control.hasError('maxlength')) {
       return `Máximo ${control.errors['maxlength'].requiredLength} caracteres.`;
     }
-    if (control.hasError('email')) {
-      return 'Formato de email inválido.';
-    }
-    if (control.hasError('pattern')) {
-      return 'Formato inválido.';
-    }
 
     return 'Error de validación.';
   }
