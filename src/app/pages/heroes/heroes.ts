@@ -4,9 +4,16 @@ import { Link } from '../../components/link/link';
 import { HeroesService } from '../../services/heroes.service';
 import { Router } from '@angular/router';
 import { IHero } from '../../models/Hero.model';
+import { InputComponent } from '../../components/input/input';
+import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  AlertDialog,
+  AlertDialogData,
+} from '../../components/alert-dialog/alert-dialog';
 @Component({
   selector: 'app-heroes',
-  imports: [Table, Link],
+  imports: [Table, Link, InputComponent],
   templateUrl: './heroes.html',
   styleUrl: './heroes.scss',
 })
@@ -14,6 +21,7 @@ export class Heroes {
   router = inject(Router);
   heroesService = inject(HeroesService);
   dataHeroes = this.heroesService.heroes;
+  dialog = inject(MatDialog);
   colums = computed<string[]>(() => {
     if (this.dataHeroes().length > 0) {
       return ['name', 'category', 'gender', 'isRetired', 'actions'];
@@ -31,6 +39,7 @@ export class Heroes {
       isRetired: hero.isRetired,
     }));
   });
+  searchControl = new FormControl('');
 
   navigateEdit(event: Record<string, TableCell>) {
     this.router.navigate(['heroes/edit', event['id']]);
@@ -41,7 +50,21 @@ export class Heroes {
   }
 
   onDelete(event: Record<string, TableCell>) {
-    const id = event['id'] as string;
-    this.heroesService.deleteHero(id);
+    this.dialog
+      .open<AlertDialog, AlertDialogData>(AlertDialog, {
+        data: {
+          title: 'Eliminar héroe',
+          content: '¿Estás seguro que deseas eliminar el héroe?',
+          acceptLabel: 'Eliminar',
+          cancelLabel: 'Cancelar',
+        },
+      })
+      .afterClosed()
+      .subscribe((confirm) => {
+        if (confirm) {
+          const id = event['id'] as string;
+          this.heroesService.deleteHero(id);
+        }
+      });
   }
 }

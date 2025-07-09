@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="header">
+    <h1>{{ data.title }}</h1>
+  </div>
+
+  @if (data.content) {
+    <p class="content" [innerHtml]="data.content"></p>
+  }
+
+  <div class="dialog-actions">
+    @if (data.cancelLabel) {
+      <app-button
+        (confirm)="dialogRef.close(false)"
+        [text]="data.cancelLabel"
+        typeButton="basic"
+      >
+      </app-button>
+    }
+    <app-button
+      (confirm)="dialogRef.close(true)"
+      [text]="data.acceptLabel ?? 'Aceptar'"
+      typeButton="cancel"
+    >
+    </app-button>
+  </div>
+</div>

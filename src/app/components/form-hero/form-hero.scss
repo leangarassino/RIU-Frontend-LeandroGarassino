@@ -1,3 +1,5 @@
+@use "./../../styles/index" as index;
+
 .container {
   width: 100%;
   form {
@@ -7,6 +9,9 @@
   }
   h1 {
     text-align: center;
+    padding-bottom: 1rem;
+    color: index.$primary-color;
+    font-weight: 600;
   }
 
   .powers {

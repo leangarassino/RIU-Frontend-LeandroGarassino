@@ -1,1 +1,65 @@
-<p>hero works!!!!!</p>
+<div class="hero">
+  <h2>Detalles del Héroe</h2>
+  <div class="container">
+    <div>
+      <h3>Datos generales:</h3>
+      <p><span>Nombre:</span> {{ heroData()?.name }}</p>
+      <p><span>Historia:</span> {{ heroData()?.history }}</p>
+      <p><span>Categoría:</span> {{ heroData()?.category }}</p>
+      <p><span>Género:</span> {{ heroData()?.gender }}</p>
+      <p><span>Retirado:</span> {{ heroData()?.isRetired ? "Sí" : "No" }}</p>
+
+      @if (heroData()?.image) {
+        <div>
+          <h3>Imagen:</h3>
+          <br />
+          <img
+            [src]="heroData()?.image"
+            alt="Imagen del héroe"
+            style="max-width: 200px; border: 1px solid #ccc; margin-top: 10px"
+          />
+        </div>
+      }
+    </div>
+    <div>
+      <h3>Poderes:</h3>
+      @if (heroData()?.powers && heroData()!.powers.length > 0) {
+        <p>
+          {{ getActivePowerNames(heroData()!.powers) }}
+        </p>
+      } @else {
+        <p>No tiene poderes.</p>
+      }
+
+      <h3>Estadísticas:</h3>
+      @if (heroData()?.stats) {
+        <mat-list>
+          <mat-list-item
+            ><span>Fuerza: </span>
+            {{ heroData()!.stats.strength }}</mat-list-item
+          >
+          <mat-list-item
+            ><span>Inteligencia:</span>
+            {{ heroData()!.stats.intelligence }}</mat-list-item
+          >
+          <mat-list-item
+            ><span>Velocidad:</span>
+            {{ heroData()!.stats.speed }}</mat-list-item
+          >
+          <mat-list-item
+            ><span>Durabilidad:</span>
+            {{ heroData()!.stats.durability }}</mat-list-item
+          >
+          <mat-list-item
+            ><span>Defensa:</span>
+            {{ heroData()!.stats.defense }}</mat-list-item
+          >
+          <mat-list-item
+            ><span>Habilidad de combate:</span>
+            {{ heroData()!.stats.combatSkill }}</mat-list-item
+          >
+        </mat-list>
+      }
+    </div>
+  </div>
+</div>

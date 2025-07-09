@@ -1,5 +1,8 @@
 <div class="container">
-  <app-link text="Crear héroe" path="/heroes/create"></app-link>
+  <div class="header">
+    <app-link text="Crear héroe" path="/heroes/create"></app-link>
+    <app-input [control]="searchControl" label="Buscador"></app-input>
+  </div>
   <app-table
     [data]="heroesForTable()"
     [displayedColumns]="colums()"

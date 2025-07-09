@@ -1,0 +1,49 @@
+@use "./../../styles/index" as index;
+
+.hero {
+  h2 {
+    margin: 1rem 0;
+    color: index.$primary-text-color;
+    font-weight: 600;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    @media (max-width: 767px) {
+      grid-template-columns: 100%;
+    }
+
+    ::ng-deep .mdc-list-item__primary-text {
+      color: index.$primary-color !important;
+      font-family: Montserrat, sans-serif;
+    }
+
+    mat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      max-width: 400px;
+      mat-list-item {
+        border: 1px solid index.$border-soft-color;
+        border-radius: 1rem;
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+
+    h3 {
+      margin: 1rem 0;
+      color: index.$primary-color;
+      font-weight: 500;
+    }
+
+    p {
+      padding: 0.4rem 0;
+      color: index.$primary-color;
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+}

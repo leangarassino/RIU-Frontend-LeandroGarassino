@@ -1,7 +1,11 @@
 <div class="container">
   <h1>{{ title }}</h1>
   <form [formGroup]="heroForm">
-    <app-input label="Nombre" [control]="heroForm.controls['name']"></app-input>
+    <app-input
+      label="Nombre"
+      [control]="heroForm.controls['name']"
+      [toUppercase]="true"
+    ></app-input>
     <app-input
       label="Historia"
       [control]="heroForm.controls['history']"
@@ -52,9 +56,9 @@
         [control]="getControl('stats.durability')"
       ></app-input>
       <app-input
-        label="Proyección de energía"
+        label="Defensa"
         type="number"
-        [control]="getControl('stats.energyProjection')"
+        [control]="getControl('stats.defense')"
       ></app-input>
       <app-input
         label="Habilidad de combate"

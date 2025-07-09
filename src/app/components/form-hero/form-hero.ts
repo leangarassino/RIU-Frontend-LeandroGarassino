@@ -64,7 +64,7 @@ export class FormHero {
         Validators.min(1),
         Validators.max(100),
       ]),
-      energyProjection: new FormControl(0, [
+      defense: new FormControl(0, [
         Validators.required,
         Validators.min(1),
         Validators.max(100),
@@ -111,7 +111,7 @@ export class FormHero {
         intelligence: statsGroup.get('intelligence')?.value ?? 0,
         speed: statsGroup.get('speed')?.value ?? 0,
         durability: statsGroup.get('durability')?.value ?? 0,
-        energyProjection: statsGroup.get('energyProjection')?.value ?? 0,
+        defense: statsGroup.get('defense')?.value ?? 0,
         combatSkill: statsGroup.get('combatSkill')?.value ?? 0,
       },
     };
@@ -133,11 +133,11 @@ export class FormHero {
       isRetired: hero.isRetired,
       powers: hero.powers,
       stats: {
-        strength: hero.stats.strength,
+        strength: Number(hero.stats.strength),
         intelligence: Number(hero.stats.intelligence),
         speed: Number(hero.stats.speed),
         durability: Number(hero.stats.durability),
-        energyProjection: Number(hero.stats.energyProjection),
+        defense: Number(hero.stats.defense),
         combatSkill: Number(hero.stats.combatSkill),
       },
       image: hero.image,

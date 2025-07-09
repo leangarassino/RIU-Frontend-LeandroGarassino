@@ -15,6 +15,6 @@ export interface Stats {
   intelligence: number;
   speed: number;
   durability: number;
-  energyProjection: number;
+  defense: number;
   combatSkill: number;
 }

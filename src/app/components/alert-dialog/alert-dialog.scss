@@ -1,0 +1,40 @@
+@use "./../../styles/index" as index;
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 480px;
+  max-width: 600px;
+  gap: 1rem;
+  padding: 1rem;
+  max-height: 550px;
+  background: index.$white;
+
+  @media (max-width: 767px) {
+    max-width: 100%;
+    min-width: auto;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    h1 {
+      color: index.$text-color-strong;
+      font-weight: 500;
+      line-height: normal;
+      font-size: 1rem;
+      text-align: start;
+    }
+  }
+
+  .dialog-actions {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+}

@@ -5,6 +5,15 @@
   *ngIf="control"
 >
   <mat-label>{{ label }}</mat-label>
-  <input matInput [type]="type" [formControl]="control" />
-  <!-- TODO: Agregar manejo de errores -->
+  @if (toUppercase) {
+    <input
+      matInput
+      [type]="type"
+      [formControl]="control"
+      appSelectFocus
+      appUppercaseInputDirective
+    />
+  } @else {
+    <input matInput [type]="type" [formControl]="control" appSelectFocus />
+  }
 </mat-form-field>
