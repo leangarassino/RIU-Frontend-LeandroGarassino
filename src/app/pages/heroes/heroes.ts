@@ -1,4 +1,10 @@
-import { Component, computed, inject } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { Table, TableCell } from '../../components/table/table';
 import { Link } from '../../components/link/link';
 import { HeroesService } from '../../services/heroes.service';
@@ -11,16 +17,17 @@ import {
   AlertDialog,
   AlertDialogData,
 } from '../../components/alert-dialog/alert-dialog';
+import { Button } from '../../components/button/button';
 @Component({
   selector: 'app-heroes',
-  imports: [Table, Link, InputComponent],
+  imports: [Table, Link, InputComponent, Button],
   templateUrl: './heroes.html',
   styleUrl: './heroes.scss',
 })
 export class Heroes {
   router = inject(Router);
   heroesService = inject(HeroesService);
-  dataHeroes = this.heroesService.heroes;
+  dataHeroes: WritableSignal<IHero[]> = signal(this.heroesService.heroes());
   dialog = inject(MatDialog);
   colums = computed<string[]>(() => {
     if (this.dataHeroes().length > 0) {
@@ -40,6 +47,14 @@ export class Heroes {
     }));
   });
   searchControl = new FormControl('');
+
+  constructor() {
+    this.searchControl.valueChanges.subscribe((searchTerm) => {
+      if (!searchTerm) {
+        this.dataHeroes.set(this.heroesService.heroes());
+      }
+    });
+  }
 
   navigateEdit(event: Record<string, TableCell>) {
     this.router.navigate(['heroes/edit', event['id']]);
@@ -66,5 +81,13 @@ export class Heroes {
           this.heroesService.deleteHero(id);
         }
       });
+  }
+
+  search() {
+    const searchTerm = this.searchControl.value;
+    if (searchTerm) {
+      const heroes = this.heroesService.searchHeroesByName(searchTerm);
+      this.dataHeroes.set(heroes);
+    }
   }
 }

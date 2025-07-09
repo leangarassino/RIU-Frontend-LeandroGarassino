@@ -1,7 +1,15 @@
 <div class="container">
   <div class="header">
     <app-link text="Crear héroe" path="/heroes/create"></app-link>
-    <app-input [control]="searchControl" label="Buscador"></app-input>
+    <div class="box-search">
+      <app-input [control]="searchControl" label="Buscador"></app-input>
+      <app-button
+        text="Buscar"
+        [bigHeight]="true"
+        [disabled]="!searchControl.value"
+        (confirm)="search()"
+      ></app-button>
+    </div>
   </div>
   <app-table
     [data]="heroesForTable()"

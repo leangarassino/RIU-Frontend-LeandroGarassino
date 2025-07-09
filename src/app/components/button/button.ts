@@ -11,5 +11,6 @@ export class Button {
   @Input() maxWidth: boolean = true;
   @Input() text: string = 'Confirmar';
   @Input() disabled: boolean = false;
+  @Input() bigHeight: boolean = false;
   @Output() confirm = new EventEmitter();
 }

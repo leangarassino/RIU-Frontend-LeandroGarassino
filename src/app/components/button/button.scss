@@ -74,4 +74,8 @@ button {
     border: unset;
     color: index.$primary-text-color;
   }
+
+  &.big-height {
+    height: 56px;
+  }
 }

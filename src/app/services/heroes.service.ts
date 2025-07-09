@@ -27,4 +27,16 @@ export class HeroesService {
   getHero(id: string): IHero | undefined {
     return this.heroes().find((hero) => hero.id === id);
   }
+
+  searchHeroesByName(name: string | null): IHero[] {
+    const searchTerm = name?.trim().toLowerCase();
+
+    if (!searchTerm) {
+      return this.heroes();
+    }
+
+    return this.heroes().filter((hero) =>
+      hero.name.toLowerCase().includes(searchTerm),
+    );
+  }
 }
