@@ -107,7 +107,7 @@ export class FormHero {
     const formValue = this.heroForm.value;
     const statsGroup = this.heroForm.get('stats') as FormGroup;
     const hero: IHero = {
-      id: this.editHero?.id as string,
+      id: this.editHero?.id || uuidv4(),
       name: formValue.name as string,
       history: formValue.history as string,
       category: formValue.category as string,
