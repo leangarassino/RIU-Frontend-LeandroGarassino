@@ -12,4 +12,5 @@ export class Link {
   @Input() text: string | null = null;
   @Input() path: string | null = null;
   @Input() type: 'primary' | 'basic' = 'primary';
+  @Input() back: boolean = false;
 }

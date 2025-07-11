@@ -9,7 +9,6 @@
   }
   h1 {
     text-align: center;
-    padding-bottom: 1rem;
     color: index.$primary-color;
     font-weight: 600;
   }
@@ -20,6 +19,15 @@
     @media (max-width: 767px) {
       grid-template-columns: 100%;
     }
+  }
+
+  .header {
+    position: relative;
+    app-link {
+      position: absolute;
+      bottom: 0.2rem;
+    }
+    margin-bottom: 1rem;
   }
 
   fieldset {

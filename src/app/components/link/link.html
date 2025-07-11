@@ -1,8 +1,14 @@
 <a
   class="link"
   [class]="type"
+  [class.back]="back"
   *ngIf="path"
   [routerLink]="[path]"
   routerLinkActive="router-link-active"
-  >{{ text }}</a
 >
+  @if (back) {
+    <img src="back.svg" alt="Back" />
+  } @else {
+    {{ text }}
+  }
+</a>

@@ -78,7 +78,13 @@ export class Heroes {
       .subscribe((confirm) => {
         if (confirm) {
           const id = event['id'] as string;
-          const heroes = this.heroesService.deleteHero(id);
+          let heroes = this.heroesService.deleteHero(id);
+          let heroesFilter: IHero[] | undefined;
+          const searchTerm = this.searchControl.value;
+          if (searchTerm) {
+            heroesFilter = this.heroesService.searchHeroesByName(searchTerm);
+            heroes = heroesFilter;
+          }
           this.dataHeroes.set(heroes);
         }
       });

@@ -13,10 +13,11 @@ import { Button } from '../button/button';
 import { Select } from '../select/select';
 import { Image } from '../image/image';
 import { IHero } from '../../models/Hero.model';
+import { Link } from '../link/link';
 
 @Component({
   selector: 'app-form-hero',
-  imports: [InputComponent, ReactiveFormsModule, Button, Select, Image],
+  imports: [InputComponent, ReactiveFormsModule, Button, Select, Image, Link],
   templateUrl: './form-hero.html',
   styleUrl: './form-hero.scss',
 })
@@ -106,21 +107,21 @@ export class FormHero {
     const formValue = this.heroForm.value;
     const statsGroup = this.heroForm.get('stats') as FormGroup;
     const hero: IHero = {
-      id: this.editHero?.id ?? uuidv4(),
-      name: formValue.name ?? '',
-      history: formValue.history ?? '',
-      category: formValue.category ?? '',
-      gender: formValue.gender ?? '',
-      image: formValue.image ?? '',
-      isRetired: formValue.isRetired ?? false,
+      id: this.editHero?.id as string,
+      name: formValue.name as string,
+      history: formValue.history as string,
+      category: formValue.category as string,
+      gender: formValue.gender as string,
+      image: formValue.image as string,
+      isRetired: formValue.isRetired as boolean,
       powers: this.powersArray.value ?? [],
       stats: {
-        strength: statsGroup.get('strength')?.value ?? 0,
-        intelligence: statsGroup.get('intelligence')?.value ?? 0,
-        speed: statsGroup.get('speed')?.value ?? 0,
-        durability: statsGroup.get('durability')?.value ?? 0,
-        defense: statsGroup.get('defense')?.value ?? 0,
-        combatSkill: statsGroup.get('combatSkill')?.value ?? 0,
+        strength: statsGroup.get('strength')?.value as number,
+        intelligence: statsGroup.get('intelligence')?.value as number,
+        speed: statsGroup.get('speed')?.value as number,
+        durability: statsGroup.get('durability')?.value as number,
+        defense: statsGroup.get('defense')?.value as number,
+        combatSkill: statsGroup.get('combatSkill')?.value as number,
       },
     };
     this.emitHeroe.emit(hero);

@@ -22,4 +22,17 @@
       background-color: index.$primary-contrast-color;
     }
   }
+
+  &.back {
+    background-color: index.$white;
+    padding: 0.2rem 0.8rem;
+    &:hover {
+      background-color: index.$border-soft-color;
+    }
+  }
+
+  img {
+    height: 1.2rem;
+    width: 1.2rem;
+  }
 }

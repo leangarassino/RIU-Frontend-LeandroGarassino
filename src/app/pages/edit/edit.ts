@@ -19,7 +19,6 @@ export class Edit implements OnInit {
   ngOnInit(): void {
     if (this.id) {
       this.hero = this.heroesService.getHero(this.id) ?? null;
-      if (!this.hero) this.router.navigate(['welcome']); // TODO: Mover este redirect a un guard
     }
   }
 

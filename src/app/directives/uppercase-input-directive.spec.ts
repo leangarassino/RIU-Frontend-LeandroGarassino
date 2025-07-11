@@ -1,4 +1,3 @@
-// src/app/directives/uppercase-input-directive.spec.ts
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';

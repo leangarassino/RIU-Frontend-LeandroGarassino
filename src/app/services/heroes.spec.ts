@@ -3,6 +3,7 @@ import { HeroesService } from './heroes.service';
 import { HeroesState } from '../state/heroes.state';
 import { IHero } from '../models/Hero.model';
 import { Signal, signal, WritableSignal } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 
 class MockHeroesState {
   private _mockHeroes: WritableSignal<IHero[]> = signal<IHero[]>([]);
@@ -33,11 +34,11 @@ describe('HeroesService', () => {
   let mockHeroesState: MockHeroesState;
   const TEST_HEROES: IHero[] = [
     {
-      id: '1',
+      id: uuidv4(),
       name: 'Spiderman',
       history: 'Friendly neighborhood hero',
-      category: 'Marvel',
-      gender: 'Male',
+      category: 'Mutante',
+      gender: 'Masculino',
       image:
         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==',
       isRetired: false,
@@ -64,11 +65,11 @@ describe('HeroesService', () => {
       },
     },
     {
-      id: '2',
+      id: uuidv4(),
       name: 'Superman',
       history: 'Man of Steel',
-      category: 'DC',
-      gender: 'Male',
+      category: 'Humano',
+      gender: 'Femenino',
       image:
         'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfJwgKCwswMDA+Hyw8NDAxLS0tJjVh',
       isRetired: false,
@@ -95,11 +96,11 @@ describe('HeroesService', () => {
       },
     },
     {
-      id: '3',
+      id: uuidv4(),
       name: 'Batman',
       history: 'The Dark Knight',
-      category: 'DC',
-      gender: 'Male',
+      category: 'Mutante',
+      gender: 'No binario',
       image:
         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==',
       isRetired: true,
@@ -126,11 +127,11 @@ describe('HeroesService', () => {
       },
     },
     {
-      id: '4',
+      id: uuidv4(),
       name: 'Wonder Woman',
       history: 'Amazonian princess',
-      category: 'DC',
-      gender: 'Female',
+      category: 'Mutante',
+      gender: 'Femenino',
       image:
         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==',
       isRetired: false,
@@ -193,8 +194,8 @@ describe('HeroesService', () => {
         id: '5',
         name: 'Captain Marvel',
         history: 'Kree warrior',
-        category: 'Marvel',
-        gender: 'Female',
+        category: 'Humano',
+        gender: 'Femenino',
         image:
           'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfJwgKCwswMDA+Hyw8NDAxLS0tJjVh',
         isRetired: false,
@@ -216,7 +217,7 @@ describe('HeroesService', () => {
 
   describe('deleteHero', () => {
     it('should call HeroesState.deleteHero and remove the hero from the state', () => {
-      const idToDelete = '3';
+      const idToDelete = TEST_HEROES[2].id;
       service.deleteHero(idToDelete);
       expect(mockHeroesState.deleteHero).toHaveBeenCalledWith(idToDelete);
       expect(service.heroes().find((h) => h.id === idToDelete)).toBeUndefined();
@@ -243,7 +244,7 @@ describe('HeroesService', () => {
 
   describe('getHero', () => {
     it('should return a hero by its ID with complete details', () => {
-      const hero = service.getHero('1');
+      const hero = service.getHero(TEST_HEROES[0].id);
       expect(hero).toEqual(TEST_HEROES[0]);
       expect(hero?.image).toBe(
         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==',
@@ -268,7 +269,7 @@ describe('HeroesService', () => {
           TEST_HEROES[2],
         ]),
       );
-      expect(results[0].category).toBe('Marvel');
+      expect(results[0].category).toBe('Mutante');
       expect(results[1].image).toBe(
         'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfJwgKCwswMDA+Hyw8NDAxLS0tJjVh',
       );

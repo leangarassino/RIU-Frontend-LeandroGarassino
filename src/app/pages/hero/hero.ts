@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { IHero } from '../../models/Hero.model';
 import { AVAILABLE_POWERS } from '../../utils/data';
 import { MatListModule } from '@angular/material/list';
+import { Link } from '../../components/link/link';
 
 @Component({
   selector: 'app-hero',
-  imports: [MatListModule],
+  imports: [MatListModule, Link],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
@@ -20,7 +21,7 @@ export class Hero implements OnInit {
   ngOnInit(): void {
     if (this.id) {
       const hero = this.heroesService.getHero(this.id) ?? null;
-      if (hero) this.heroData.set(hero);
+      this.heroData.set(hero);
     }
   }
 

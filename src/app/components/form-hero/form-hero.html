@@ -1,5 +1,8 @@
 <div class="container">
-  <h1>{{ title }}</h1>
+  <div class="header">
+    <app-link path="/heroes" [back]="true"></app-link>
+    <h1>{{ title }}</h1>
+  </div>
   <form [formGroup]="heroForm">
     <app-input
       label="Nombre"
